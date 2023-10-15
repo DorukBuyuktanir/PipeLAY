@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PipeLAY</title>
+    <style>
+        html{
+            background-color: rgb(0, 31, 99);
+        }
+        body{
+            margin-top: 0%;
+            top: 0%;
+            border-top: 0cap;
+            margin: auto;
+            min-height: 500px;
+            min-width: 250;
+            height: 120%;
+            max-width: 1500px;
+            background-color: rgba(0, 78, 141, 0.877);
+            border-style: outset;
+            border-color: rgba(0, 78, 141, 0.692);
+        }
+        .ElementBackground{
+            margin: 10px 15px;
+            width: 210px;
+            height: 300px;
+            background-color: rgb(11, 56, 153);
+            border: 3px black solid;
+            position: static;
+            text-align: center;
+            z-index: 1;
+        }
+        #Parent{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+        .LevelPhoto{
+            margin: 5px auto;
+            width: 200px;
+            height: 130px;
+            background-color: rgba(5, 0, 80, 0.753);
+            position: static;
+            z-index: 2;
+        }
+        .Button1{
+            margin: 5px auto;
+            width: 200px;
+            height: 70px;
+            background-color: rgba(5, 0, 80, 0.753);
+            position: static;
+            font-size: large;
+            z-index: 2;
+        }
+        .FileInput {
+            display: none;
+        }
+
+        .UploadButton {
+            margin: 5px auto;
+            width: 200px;
+            height: 70px;
+            background-color: rgba(5, 0, 80, 0.753);
+            position: static;
+            z-index: 2;
+            color: black;
+            border-style: outset;
+            font-size: large;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="Parent">    
+        <!--<div class="ElementBackground"> <div class="LevelPhoto"></div> <button class="Button1">Play the Level</button> <button class="Button1">Edit the Level</button> </div>
+        <div class="ElementBackground"> <div class="LevelPhoto"></div> <button class="Button1">Play the Level</button> <button class="Button1">Edit the Level</button> </div>
+        <div class="ElementBackground"> <div class="LevelPhoto"></div> <button class="Button1">Play the Level</button> <button class="Button1">Edit the Level</button> </div>
+        <div class="ElementBackground"> <div class="LevelPhoto"></div> <label class="InputButton1"><button class="UploadButton" onclick="document.getElementById('fileInput').click()">Upload a Level</button><input type="file" id="fileInput" class="FileInput" style="display: none;"></label><button class="Button1">Create New</button> </div>
+        <div class="ElementBackground"> <div class="LevelPhoto"></div> <label class="InputButton1"><button class="UploadButton" onclick="document.getElementById('fileInput').click()">Upload a Level</button><input type="file" id="fileInput" class="FileInput" style="display: none;"></label><button class="Button1">Create New</button> </div>
+        <div class="ElementBackground"> <div class="LevelPhoto"></div> <label class="InputButton1"><button class="UploadButton" onclick="document.getElementById('fileInput').click()">Upload a Level</button><input type="file" id="fileInput" class="FileInput" style="display: none;"></label><button class="Button1">Create New</button> </div>-->
+    </div></br></br>
+    <script>
+        function CreateMenu(levelData, parent){
+            let levelElements = [];
+            levelData.forEach(Level => {
+                levelElements.push(CreateElement(Level, parent));
+            });
+            return levelElements;
+
+            function CreateElement(level, mainParent){
+                if(level["Empty"]){
+                    // Oluşturulacak ana div öğesini tanımla ve oluştur
+                    let mainDiv = document.createElement("div");
+                    mainDiv.classList.add("ElementBackground");
+
+                    // İkinci iç div öğesini oluştur
+                    let innerDiv = document.createElement("div");
+                    innerDiv.classList.add("LevelPhoto");
+
+                    // Dosya yükleme düğmesini içeren etiketi oluştur
+                    let fileLabel = document.createElement("label");
+                    fileLabel.classList.add("InputButton1");
+
+                    // "Upload a Level" düğmesini oluştur
+                    let uploadButton = document.createElement("button");
+                    uploadButton.classList.add("UploadButton");
+                    uploadButton.textContent = "Upload a Level";
+                    uploadButton.onclick = function() {
+                      document.getElementById('fileInput').click();
+                    };
+
+                    // Dosya seçme düğmesini oluştur ve gizle
+                    let fileInput = document.createElement("input");
+                    fileInput.type = "file";
+                    fileInput.id = "fileInput";
+                    fileInput.classList.add("FileInput");
+                    fileInput.style.display = "none";
+
+                    // "Create New" düğmesini oluştur
+                    let createNewButton = document.createElement("button");
+                    createNewButton.classList.add("Button1");
+                    createNewButton.textContent = "Create New";
+
+                    // Oluşturulan öğeleri ana div içine yerleştir
+                    fileLabel.appendChild(uploadButton);
+                    fileLabel.appendChild(fileInput);
+
+                    mainDiv.appendChild(innerDiv);
+                    mainDiv.appendChild(fileLabel);
+                    mainDiv.appendChild(createNewButton);
+
+
+                    // Oluşturulan ana div'i döndür
+                    mainParent.appendChild(mainDiv);
+                    return mainDiv;
+                }else{
+                    // Oluşturulacak ana div öğesini tanımlayın ve oluştur
+                    let mainDiv = document.createElement("div");
+                    mainDiv.classList.add("ElementBackground");
+
+                    // İkinci iç div öğesini oluştur
+                    let innerDiv = document.createElement("div");
+                    innerDiv.classList.add("LevelPhoto");
+
+                    // "Play the Level" düğmesini oluştur
+                    let playButton = document.createElement("button");
+                    playButton.classList.add("Button1");
+                    playButton.textContent = "Play the Level";
+
+                    // "Edit the Level" düğmesini oluştur
+                    let editButton = document.createElement("button");
+                    editButton.classList.add("Button1");
+                    editButton.textContent = "Edit the Level";
+
+                    // Oluşturulan öğeleri ana div içine yerleştir
+                    mainDiv.appendChild(innerDiv);
+                    mainDiv.appendChild(playButton);
+                    mainDiv.appendChild(editButton);
+
+                    // Oluşturulan ana div'i döndür
+                    mainParent.appendChild(mainDiv);
+                    return mainDiv;
+                }
+            }
+        }
+        
+        const StrogeId = "PipeLAY.";
+        let Parent = document.getElementById("Parent");
+        let LevelData = JSON.parse(localStorage.getItem(StrogeId+"Levels"));
+        let LevelElements = CreateMenu(LevelData,Parent)
+    </script>
+</body>
+</html>
