@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PipeLAY</title>
+    <style>
+        body{
+            background-color: rgb(64, 64, 236);
+        }
+        .button {
+          border: none;
+          color: white;
+          padding: 16px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          transition-duration: 0.4s;
+          cursor: pointer;
+        }
+        .button1 {
+                color: rgb(69, 116, 15);
+                border: 2px black;
+                background-color: rgb(17, 73, 156);
+        }
+         .button1:hover {
+            color: rgb(0, 238, 255);
+            border: 2px black;
+            background-color: rgb(11, 158, 184);
+        }
+        .button2{
+            color: rgb(0, 10, 150);
+            font-size: 52px;
+            text-align: center;
+            text-decoration-style: solid;
+            text-indent: 50px;
+        }
+        .button2:hover{
+            color: rgb(11, 158, 184);
+            font-size: 52px;
+            text-align: center;
+            text-decoration-style: solid;
+            text-indent: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h1><div class="button button2" id="Header"><h1>PipeLAY</h1></div></h1>
+        <div class="button button1" onclick="SetUp()"><h1>SetUp The Game</h1></div><br>
+        <div class="button button1" onclick="OpenMenu()"><h1>Open Game Menu</h1></div><br>
+        <div class="button button1" onclick="alert('Nothing has been done succesfully...')"><h1>Do NoThInG</h1></div><br>
+    </div>
+    <script>
+        let Header= document.getElementById("Header");
+        const Load ="\n\nLoading...";
+        const Normal = "PipeLAY"; 
+        const StrogeId = "PipeLAY.";
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        async function SetUp(){
+            if(Header.innerText != Load){
+                Header.innerText = Load;
+                sleep(200).then(()=>    {
+                    localStorage.setItem(StrogeId+"Ready",true);
+                    localStorage.setItem(StrogeId+"Levels",JSON.stringify([
+                        {Empty: true}, {Empty: true}, {Empty: true},
+                        {Empty: true}, {Empty: true}, {Empty: true},
+                        {Empty: true}, {Empty: true}, {Empty: true},
+                        {Empty: true}, {Empty: true}, {Empty: true},]));
+                    alert("SetUp has been successfully made.");
+                    window.location.reload(false); });
+            }
+        }
+        function OpenMenu(){
+            if(localStorage.getItem(StrogeId+"Ready") != "true")    
+                alert("You should do a SetUp before playing the game.\n"+
+                "If you have already done it your save data is broken and lost.");
+            else if(Header.innerText == Normal)
+                location.href =  "./GameMenu.html"
+        }
+    </script>
+</body>
+</html>
