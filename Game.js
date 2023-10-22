@@ -19,33 +19,13 @@ class hareketler{
             [0,0,0,0,0,0,0,0,],
             [0,0,0,0,0,0,0,0,],
         ];
-        this.Borular=[[], [], [], []]/*[
-            [null,boru_1,boru_2,boru_3,boru_4,boru_5,boru_6,boru_7,],
-            [boru_8,boru_9,boru_10,boru_11,boru_12,boru_13,boru_14,boru_15,],
-            [boru_16,boru_17,boru_18,boru_19,boru_20,boru_21,boru_22,boru_23,],
-            [boru_24,boru_25,boru_26,boru_27,boru_28,boru_29,boru_30,null],
-        ];*/
+        this.Borular=[[], [], [], []]
         this.Doğru_Cevap=[
             [0, 2, 0, 0, 1, 2, 0, 0],
             [0, 0, 2, 1, 3, 0, 2, 0],
             [0, 0, 0, 3, 0, 0, 0, 2],
             [0, 0, 0, 0, 0, 0, 0, 0],
         ];
-        /*if(izinler.no8==""){
-            this.Doğru_Cevap=[
-                [0, 2, 0, 0, 1, 2, 0, 0],
-                [0, 0, 2, 1, 3, 0, 2, 0],
-                [0, 0, 0, 3, 0, 0, 0, 2],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-            ]
-        }else if(izinler.no8=="1"){
-            this.Doğru_Cevap=[
-                [0, 0, 2, 1, 0, 0, 0, 2],
-                [0, 0, 0, 3, 0, 1, 0, 3],
-                [0, 0, 0, 0, 1, 3, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-            ]
-        }*/
     }
 
     Kontrolcü(){
@@ -59,7 +39,7 @@ class hareketler{
                 window.alert("Tebrikler.Tesisat artık çalışıyor.");
                 location.href='./GameMenu.html';
             }else{
-                window.alert("Dikkatli bak.");//1,0,2 this.sayaçlar[0]==[0,0,2,1,0,0,0,2]&&this.sayaçlar[1][2]==0&&this.sayaçlar[1][3]==3&&this.sayaçlar[1][5]<2&&this.sayaçlar[1][6]==0&&this.sayaçlar[1][7]==2&&this.sayaçlar[2][4]==0&&this.sayaçlar[2][5]==1&&this.sayaçlar[3][5]==0&&this.sayaçlar[3][6]==0&&this.sayaçlar[3][4]==0
+                window.alert("Dikkatli bak.");
             };
     };
 
@@ -85,44 +65,13 @@ class hareketler{
             return Max_Matrisi;
         };
 
-        //function Boru_Türleri_Belirleyici(İzinler) {
         /*
             0=>Düz Boru
             1=>L Boru
             2=>Üç Yönlü Boru
             3=>Olmayan Boru
             4=>Dört Yönlü Boru
-            5=>Giriş Çıkışlar
-        
-            let a=[[],[],[],[],];
-            if(İzinler==0){
-                a = [
-                    [5,1,3,3,1,1,3,3,],
-                    [3,1,1,1,1,1,1,3,],
-                    [3,3,1,1,3,3,1,1,],
-                    [3,3,3,3,3,3,3,5,],
-                ];
-            }else if(İzinler==1){
-                a = [
-                    [5,0,1,1,0,0,0,1,],
-                    [3,3,1,1,3,1,0,1,],
-                    [3,3,3,3,1,1,3,3,],
-                    [3,3,3,3,1,0,0,5,],
-                ];
-            }else {
-                a = [
-                    [],
-                    [],
-                    [],
-                    [],
-                ];
-            }
-        return a;
-        };
-
-        function Doğru_Cevap_Bulucu(İzinler){
-            if()
-        }*/
+            5=>Giriş Çıkışlar}*/
 
         function Boru_dizici(Boru_Türleri,Boru,sayaç){
             for(let k=0;k<4;k++){
@@ -255,36 +204,6 @@ function TıklamaAyarı(borular, hareketle){
 let hareketler1 = new hareketler();
 hareketler1.Oyun_kurucu();
 TıklamaAyarı(hareketler1.Borular, hareketler1);
-/*boru_1.onclick=function(){hareketler1.Boru_hareketleri(2,1);};
-boru_2.onclick=function(){hareketler1.Boru_hareketleri(3,1);};
-boru_3.onclick=function(){hareketler1.Boru_hareketleri(4,1);};
-boru_4.onclick=function(){hareketler1.Boru_hareketleri(5,1);};
-boru_5.onclick=function(){hareketler1.Boru_hareketleri(6,1);};
-boru_6.onclick=function(){hareketler1.Boru_hareketleri(7,1);};
-boru_7.onclick=function(){hareketler1.Boru_hareketleri(8,1);};
-boru_8.onclick=function(){hareketler1.Boru_hareketleri(1,2);};
-boru_9.onclick=function(){hareketler1.Boru_hareketleri(2,2);};
-boru_10.onclick=function(){hareketler1.Boru_hareketleri(3,2);};
-boru_11.onclick=function(){hareketler1.Boru_hareketleri(4,2);};
-boru_12.onclick=function(){hareketler1.Boru_hareketleri(5,2);};
-boru_13.onclick=function(){hareketler1.Boru_hareketleri(6,2);};
-boru_14.onclick=function(){hareketler1.Boru_hareketleri(7,2);};
-boru_15.onclick=function(){hareketler1.Boru_hareketleri(8,2);};
-boru_16.onclick=function(){hareketler1.Boru_hareketleri(1,3);};
-boru_17.onclick=function(){hareketler1.Boru_hareketleri(2,3);};
-boru_18.onclick=function(){hareketler1.Boru_hareketleri(3,3);};
-boru_19.onclick=function(){hareketler1.Boru_hareketleri(4,3);};
-boru_20.onclick=function(){hareketler1.Boru_hareketleri(5,3);};
-boru_21.onclick=function(){hareketler1.Boru_hareketleri(6,3);};
-boru_22.onclick=function(){hareketler1.Boru_hareketleri(7,3);};
-boru_23.onclick=function(){hareketler1.Boru_hareketleri(8,3);};
-boru_24.onclick=function(){hareketler1.Boru_hareketleri(1,4);};
-boru_25.onclick=function(){hareketler1.Boru_hareketleri(2,4);};
-boru_26.onclick=function(){hareketler1.Boru_hareketleri(3,4);};
-boru_27.onclick=function(){hareketler1.Boru_hareketleri(4,4);};
-boru_28.onclick=function(){hareketler1.Boru_hareketleri(5,4);};
-boru_29.onclick=function(){hareketler1.Boru_hareketleri(6,4);};
-boru_30.onclick=function(){hareketler1.Boru_hareketleri(7,4);};*/
 window.onkeydown=function(olay){
     if(olay.keyCode==89){
         window.location.reload()
