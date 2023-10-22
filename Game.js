@@ -1,3 +1,4 @@
+const StrogeId = "PipeLAY.";
 class hareketler{
     constructor(){
         this.sayaçlar=[
@@ -62,7 +63,7 @@ class hareketler{
             };
     };
 
-     Oyun_kurucu(){
+    Oyun_kurucu(){
         function max_sayaçlar_düzenliyici(Tip_Matrisi){
             let Max_Matrisi=[
                 [0,3,3,3,3,3,3,3,],
@@ -84,7 +85,7 @@ class hareketler{
             return Max_Matrisi;
         };
 
-        function Boru_Türleri_Belirleyici(İzinler) {
+        //function Boru_Türleri_Belirleyici(İzinler) {
         /*
             0=>Düz Boru
             1=>L Boru
@@ -92,16 +93,16 @@ class hareketler{
             3=>Olmayan Boru
             4=>Dört Yönlü Boru
             5=>Giriş Çıkışlar
-        */
+        
             let a=[[],[],[],[],];
-            if(İzinler==""){
+            if(İzinler==0){
                 a = [
                     [5,1,3,3,1,1,3,3,],
                     [3,1,1,1,1,1,1,3,],
                     [3,3,1,1,3,3,1,1,],
                     [3,3,3,3,3,3,3,5,],
                 ];
-            }else if(İzinler=="1"){
+            }else if(İzinler==1){
                 a = [
                     [5,0,1,1,0,0,0,1,],
                     [3,3,1,1,3,1,0,1,],
@@ -118,6 +119,10 @@ class hareketler{
             }
         return a;
         };
+
+        function Doğru_Cevap_Bulucu(İzinler){
+            if()
+        }*/
 
         function Boru_dizici(Boru_Türleri,Boru,sayaç){
             for(let k=0;k<4;k++){
@@ -174,7 +179,9 @@ class hareketler{
 
         this.Borular = BoruOluşturucu();
         console.log(this.Borular);
-        this.Boru_Tipleri = Boru_Türleri_Belirleyici("");
+        this.MainData = JSON.parse(localStorage.getItem(StrogeId+"Levels"))[localStorage.getItem(StrogeId+"ActiveLevel")]
+        this.Boru_Tipleri = this.MainData["PipePlace"];
+        this.Doğru_Cevap = this.MainData["Answer"];
         console.log(this.Boru_Tipleri);
         this.max_sayaçlar = max_sayaçlar_düzenliyici(this.Boru_Tipleri);
         console.log(this.max_sayaçlar);

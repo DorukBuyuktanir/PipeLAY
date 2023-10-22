@@ -81,14 +81,17 @@
         <div class="ElementBackground"> <div class="LevelPhoto"></div> <label class="InputButton1"><button class="UploadButton" onclick="document.getElementById('fileInput').click()">Upload a Level</button><input type="file" id="fileInput" class="FileInput" style="display: none;"></label><button class="Button1">Create New</button> </div>-->
     </div></br></br>
     <script>
+        const StrogeId = "PipeLAY.";
         function CreateMenu(levelData, parent){
             let levelElements = [];
+            let i = 0;
             levelData.forEach(Level => {
-                levelElements.push(CreateElement(Level, parent));
+                levelElements.push(CreateElement(Level, parent, i));
+                i++;
             });
             return levelElements;
 
-            function CreateElement(level, mainParent){
+            function CreateElement(level, mainParent, i){
                 if(level["Empty"]){
                     // Oluşturulacak ana div öğesini tanımla ve oluştur
                     let mainDiv = document.createElement("div");
@@ -147,6 +150,10 @@
                     let playButton = document.createElement("button");
                     playButton.classList.add("Button1");
                     playButton.textContent = "Play the Level";
+                    playButton.onclick = function(){
+                        localStorage[StrogeId+"ActiveLevel"] = i;
+                        location.href = "./GameLoop.html";
+                    }
 
                     // "Edit the Level" düğmesini oluştur
                     let editButton = document.createElement("button");
@@ -165,7 +172,6 @@
             }
         }
         
-        const StrogeId = "PipeLAY.";
         let Parent = document.getElementById("Parent");
         let LevelData = JSON.parse(localStorage.getItem(StrogeId+"Levels"));
         let LevelElements = CreateMenu(LevelData,Parent)
