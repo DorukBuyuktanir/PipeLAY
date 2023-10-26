@@ -76,6 +76,24 @@
     </br></br>
     <script>
         const StrogeId = "PipeLAY.";
+        let Parent = document.getElementById("Parent");
+        let LevelData = JSON.parse(localStorage.getItem(StrogeId+"Levels"));
+
+        function textDosyasiniOku(dosya, callback) {
+            var fileReader = new FileReader();
+
+            fileReader.onload = function (e) {
+                var icerik = e.target.result;
+                callback(null, icerik);
+            };
+
+            fileReader.onerror = function (e) {
+                callback("Dosya okuma hatası", null);
+            };
+
+            fileReader.readAsText(dosya);
+        }
+
         function CreateMenu(levelData, parent){
             let levelElements = [];
             let i = 0;
@@ -99,20 +117,35 @@
                     let fileLabel = document.createElement("label");
                     fileLabel.classList.add("InputButton1");
 
-                    // "Upload a Level" düğmesini oluştur
-                    let uploadButton = document.createElement("button");
-                    uploadButton.classList.add("UploadButton");
-                    uploadButton.textContent = "Upload a Level";
-                    uploadButton.onclick = function() {
-                      document.getElementById('fileInput').click();
-                    };
-
                     // Dosya seçme düğmesini oluştur ve gizle
                     let fileInput = document.createElement("input");
                     fileInput.type = "file";
                     fileInput.id = "fileInput";
                     fileInput.classList.add("FileInput");
                     fileInput.style.display = "none";
+
+                    // "Upload a Level" düğmesini oluştur
+                    let uploadButton = document.createElement("button");
+                    uploadButton.classList.add("UploadButton");
+                    uploadButton.textContent = "Upload a Level";
+                    uploadButton.onclick = function() {
+                        var SaveFile = document.getElementById('fileInput').click();
+                    };
+                    fileInput.addEventListener('change', function (e) {
+                        let selectedFile = e.target.files[0];
+
+                        if (selectedFile) {
+                            textDosyasiniOku(selectedFile, function (hata, icerik) {
+                                if (hata) {
+                                    console.error("Hata: " + hata);
+                                } else {
+                                    levelData[i] = JSON.parse(icerik);
+                                    localStorage.setItem(StrogeId+"Levels", JSON.stringify(levelData));
+                                    window.location.reload(false);
+                                }
+                            });
+                        }
+                    });
 
                     // "Create New" düğmesini oluştur
                     let createNewButton = document.createElement("button");
@@ -165,9 +198,8 @@
                 }
             }
         }
+
         
-        let Parent = document.getElementById("Parent");
-        let LevelData = JSON.parse(localStorage.getItem(StrogeId+"Levels"));
         let LevelElements = CreateMenu(LevelData,Parent)
     </script>
 </body>
